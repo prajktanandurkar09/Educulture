@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduCulture | For Students By The Student</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f6f2;
+      --text: #222;
+      --primary: #7a4a2e;
+      --accent: #c89b3c;
+    }
+
+    body.dark {
+      --bg: #0e0e0e;
+      --text: #f1f1f1;
+      --primary: #c89b3c;
+      --accent: #7a4a2e;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      transition: 0.4s;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #1c1c1c, #2a2a2a);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #c89b3c !important;
+    }
+    .nav-link {
+      color: #eee !important;
+      font-weight: 500;
+    }
+    .nav-link:hover { color: #c89b3c !important; }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url("https://media.istockphoto.com/id/1242866654/photo/polygonal-brain-shape-of-an-artificial-intelligence-with-various-icon-of-smart-city-internet.jpg?s=2048x2048&w=is&k=20&c=9vTFXQc7r7w1_sOP2eyjhl_iemjg-ge79N7hKHEyzYA=");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      color: #f1e3c6;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      color: #ddd;
+    }
+
+    section { padding: 80px 0; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+
+    /* Cards */
+    .culture-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.4s;
+      height: 100%;
+    }
+    body.dark .culture-card { background: #1b1b1b; }
+    .culture-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+    .culture-card img { height: 240px; object-fit: cover; }
+
+    /* Gallery */
+    .gallery img {
+      border-radius: 12px;
+      transition: 0.4s;
+    }
+    .gallery img:hover { transform: scale(1.08); }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #bbb;
+      padding: 40px 0;
+    }
+    footer h5 { color: #c89b3c; font-family: 'Playfair Display', serif; }
+    .toggle-btn { cursor: pointer; color: #c89b3c; }
+
+    /* Caption */
+    .caption-box {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 12px 20px;
+      border-radius: 12px;
+    }
+    .caption-box h5 { margin: 0; font-family: 'Playfair Display', serif; color: #f1e3c6; }
+    .caption-box p { margin: 5px 0 0; font-size: 0.95rem; color: #ddd; }
+
+    /* AI Card */
+    .ai-card { transition: 0.4s; }
+    .ai-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    #generateBtn:hover { transform: scale(1.05); transition: 0.3s; }
+    .history-box { background: #f0f0f0; border-radius: 12px; }
+    .history-box .history-item { padding: 6px 10px; border-bottom: 1px solid #ddd; }
+    body.dark .history-box { background: #1b1b1b; }
+    body.dark .history-box .history-item { border-color: #333; }
+    #spinner { display: block; margin: 0 auto; }
+  </style>
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="https://cdn-icons-png.flaticon.com/512/3309/3309973.png" width="35">
+      EduCulture
+    </a>
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
+        <li class="nav-item"><a class="nav-link" href="#students">Students</a></li>
+       
+
+        <li class="nav-item"><a class="nav-link" href="#fun-facts">Fun-Facts</a></li>
+         <li class="nav-item"><a class="nav-link" href="#ai-story">AI-Story</a></li>
+          <li class="nav-item"><a class="nav-link" href="#learning-tools">Toolkit</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#future">Future</a></li>
+        <li class="nav-item">
+          <span class="nav-link toggle-btn" onclick="toggleMode()">
+            <i class="bi bi-moon-stars"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container text-light">
+    <h1>Where Culture Lives Forever</h1>
+     <h3>For Students By The Student</h3>
+    <p>EduCulture is a digital learning space where folk art, traditions, festivals, heritage, and untold stories are preserved, explored, and reimagined using modern technology — so culture is not just remembered, but lived by future generations.</p>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">What is EduCulture?</h2>
+    <p>EduCulture is an art-and-technology platform designed to make cultural learning simple, engaging, and accessible for students.
+
+As modernization grows, many regional traditions, folk arts, and stories are slowly fading away. EduCulture acts as a digital bridge between the past and the present, transforming cultural knowledge into interactive stories, visuals, and easy explanations that students can actually enjoy.</p>
+  </div>
+</section>
+
+<!-- Journey -->
+<section id="journey">
+  <div class="container">
+    <h2 class="section-title">Journey of Culture</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="culture-card">
+          <img src="https://media.istockphoto.com/id/535046047/photo/warli-wall-painting.jpg?s=612x612&w=0&k=20&c=Q-I8gZDCjgHnuDhNwfRo1_B7kpuAMjjJ_iVdL_-u9ig=">
+          <div class="p-4">
+            <h5>Folk Art & Paintings</h5>
+            <p>Traditional art forms like Warli, Madhubani, Gond, and Pattachitra represent stories, beliefs, and daily life. EduCulture preserves these paintings digitally so their meaning and beauty are never lost.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="culture-card">
+          <img src="https://images.unsplash.com/photo-1561961876-525c41ffbcea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9sayUyMGFydCUyMGZlc3RpdmFsc3xlbnwwfHwwfHx8MA%3D%3D">
+          <div class="p-4">
+            <h5>Festivals & Rituals</h5>
+            <p>Indian festivals are deeply connected to nature, seasons, and faith. Through visuals and stories, EduCulture showcases rituals, celebrations, and traditions beyond geographical boundaries.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="culture-card">
+          <img src="https://media.istockphoto.com/id/174790323/photo/colorful-rajasthani-puppets.jpg?s=612x612&w=0&k=20&c=PxQW4lUyi6r5aI8dPccTdLRGLHLuI9x7vPGnpGHNfcs=">
+          <div class="p-4">
+            <h5>Dance & Storytelling</h5>
+            <p>Folk dances and oral storytelling were once the heart of communities. EduCulture revives them through digital narratives, visuals, and immersive experiences for modern audiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= STUDENT USE CASE SECTION ================= -->
+<section id="students" style="background:#f8f6f2;">
+  <div class="container">
+    <h2 class="section-title text-center">How Students Can Use EduCulture</h2>
+    <p class="text-center mb-5">
+      EduCulture is designed as a learning companion for students to explore culture
+      in a simple, engaging, and meaningful way.
+    </p>
+
+    <div class="row g-4">
+      
+      <div class="col-md-3">
+        <div class="culture-card text-center p-4">
+          <i class="bi bi-journal-text fs-1 text-warning"></i>
+          <h5 class="mt-3">School Assignments</h5>
+          <p>
+            Students can quickly understand cultural topics and use AI-generated
+            explanations for history, art, and social science assignments.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="culture-card text-center p-4">
+          <i class="bi bi-lightbulb fs-1 text-warning"></i>
+          <h5 class="mt-3">Project Research</h5>
+          <p>
+            EduCulture helps students research folk art, festivals, and traditions
+            with easy explanations instead of long, complex articles.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="culture-card text-center p-4">
+          <i class="bi bi-book fs-1 text-warning"></i>
+          <h5 class="mt-3">Self Learning</h5>
+          <p>
+            Curious learners can explore culture at their own pace through stories,
+            fun facts, and visual galleries.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="culture-card text-center p-4">
+          <i class="bi bi-easel fs-1 text-warning"></i>
+          <h5 class="mt-3">Presentations</h5>
+          <p>
+            Students can prepare presentations using clear explanations and cultural
+            visuals that make learning more engaging.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FUN FACT SECTION -->
+<section id="fun-facts" style="
+  padding: 70px 0;
+  background: linear-gradient(135deg, #2b1b12, #3d2618);
+  color: #f4e8c9;
+  font-family: 'Segoe UI', sans-serif;
+">
+
+  <div style="max-width: 800px; margin: auto; text-align: center;">
+    
+    <h2 style="
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #f8e7b0;
+    ">
+      Cultural Fun Facts
+    </h2>
+
+    <p style="margin-bottom: 30px;">
+      Discover fascinating insights from India’s rich cultural heritage.
+    </p>
+
+    <div style="
+      background: rgba(255,255,255,0.08);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    ">
+      <h4 style="color:#d6b25e; margin-bottom: 12px;">
+         Did You Know?
+      </h4>
+
+      <p id="funFactText" style="
+        font-size: 1.05rem;
+        line-height: 1.6;
+        animation: fadeIn 0.6s ease-in-out;
+      ">
+        Warli paintings use only circles, triangles, and lines.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- INLINE ANIMATION -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+</section>
+
+
+
+
+<!-- AI Story Section -->
+<section id="ai-story">
+  <div class="container">
+    <h2 class="section-title text-center">AI Cultural Storyteller</h2>
+    <p class="text-center mb-4">Ask about a folk art, festival, or cultural topic and get an AI-powered story.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="ai-card p-4 rounded-4 shadow-lg position-relative" style="background: linear-gradient(135deg, #fff7e6, #f8f1e0);">
+          <input id="topicInput" class="form-control mb-3" placeholder="e.g. Warli Art, Diwali Festival">
+          <button class="btn btn-warning w-100 mb-3 d-flex align-items-center justify-content-center" id="generateBtn" onclick="generateStory()">
+            <i class="bi bi-lightning-fill me-2"></i> Generate Story
+          </button>
+          <div id="spinner" class="spinner-border text-primary my-3" role="status" style="display:none;"><span class="visually-hidden">Loading...</span></div>
+          <div id="storyOutput" class="mt-3 p-3 rounded-3 bg-light text-dark" style="display:none;"></div>
+          <h5 class="mt-4">Previous Queries</h5>
+          <div id="history" class="history-box p-2" style="max-height:200px; overflow-y:auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= STUDENT LEARNING TOOLKIT ================= -->
+<section id="learning-tools">
+  <div class="container">
+    <h2 class="section-title text-center">Student Learning Toolkit</h2>
+    <p class="text-center mb-5">
+      Learn culture in a way that is simple, fast, and exam-friendly.
+    </p>
+
+    <div class="row g-4">
+
+      <!-- Explain Like I'm 10 -->
+      <div class="col-md-6">
+        <div class="culture-card p-4">
+          <h5><i class="bi bi-emoji-smile text-warning"></i> Explain Like I'm 10</h5>
+          <p class="text-muted">Easy explanations in simple language.</p>
+          <button class="btn btn-outline-warning btn-sm" onclick="explainSimple()">Try It</button>
+          <div id="simpleOutput" class="mt-3"></div>
+        </div>
+      </div>
+
+      <!-- Quick Notes -->
+      <div class="col-md-6">
+        <div class="culture-card p-4">
+          <h5><i class="bi bi-journal-text text-warning"></i> Quick Notes / Revision</h5>
+          <p class="text-muted">5 key points for fast revision.</p>
+          <button class="btn btn-outline-warning btn-sm" onclick="showNotes()">Generate Notes</button>
+          <div id="notesOutput" class="mt-3"></div>
+        </div>
+      </div>
+
+      <!-- Doubt Chat -->
+      <div class="col-md-6">
+        <div class="culture-card p-4">
+          <h5><i class="bi bi-chat-dots text-warning"></i> Student Doubt Chat</h5>
+          <div class="border rounded p-2 mb-2" style="height:150px; overflow-y:auto;" id="doubtChat"></div>
+          <input id="doubtInput" class="form-control mb-2" placeholder="Ask your doubt...">
+          <button class="btn btn-warning btn-sm" onclick="askDoubt()">Ask</button>
+        </div>
+      </div>
+
+      <!-- Mini Quiz -->
+      <div class="col-md-6">
+        <div class="culture-card p-4">
+          <h5><i class="bi bi-patch-question text-warning"></i> Mini Quiz</h5>
+          <p>What is the purpose of folk art?</p>
+          <div>
+            <input type="radio" name="quiz"> Decoration only<br>
+            <input type="radio" name="quiz"> Cultural storytelling ✅<br>
+            <input type="radio" name="quiz"> Entertainment<br>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title text-center mb-4">Art Gallery</h2>
+    <div id="cultureGallery" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#cultureGallery" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#cultureGallery" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#cultureGallery" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#cultureGallery" data-bs-slide-to="3"></button>
+      </div>
+      <div class="carousel-inner rounded-4 shadow-lg">
+        <div class="carousel-item active">
+          <img src="https://images.unsplash.com/photo-1736866143401-5c02dac428b5?auto=format&fit=crop&w=1600&q=80" class="d-block w-100" style="height:500px; object-fit:cover;">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="caption-box"><h5>Folk Festivals</h5><p>Celebrations that reflect tradition, unity, and cultural identity.</p></div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1756694915765-8c8271ceaff5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9sayUyMGFydCUyMGZlc3RpdmFsc3xlbnwwfHwwfHx8MA%3D%3D" class="d-block w-100" style="height:500px; object-fit:cover;">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="caption-box"><h5>Traditional Performances</h5><p>Dance, music, and rituals passed down through generations.</p></div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://media.istockphoto.com/id/1214656431/photo/colorful-indian-handicarft-art.webp?a=1&b=1&s=612x612&w=0&k=20&c=jc0i8D-h6_-X1MwFtY_1qesDOaNEuSfpTYd18EDL9z8=" class="d-block w-100" style="height:500px; object-fit:cover;">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="caption-box"><h5>Folk Art & Crafts</h5><p>Visual storytelling through colors, patterns, and heritage.</p></div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80" class="d-block w-100" style="height:500px; object-fit:cover;">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="caption-box"><h5>Heritage Expressions</h5><p>Culture preserved through art, movement, and emotion.</p></div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#cultureGallery" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#cultureGallery" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Future -->
+<section id="future">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="section-title">Future Vision</h2>
+        <p>In the future, EduCulture can become a powerful learning companion for students. It can help students with school projects, presentations, and cultural studies by providing simple, reliable, and engaging cultural information. Students can explore topics for assignments, discover art forms for competitions, and learn about traditions beyond their textbooks. The platform can also allow students to contribute their own local stories, art, and traditions, helping them build confidence, creativity, and digital skills. By combining education with culture, EduCulture aims to make learning more meaningful, inclusive, and enjoyable for students from all backgrounds.</p>
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid rounded-4" src="https://media.istockphoto.com/id/1375909098/photo/happy-kid-with-cardboard-rocket-on-back-with-space-universe-and-planets-doodle-drawing-on.jpg?s=2048x2048&w=is&k=20&c=WXcnkDRr0mTJjWFATVrpoAo3mgjPdwd2bnAoPec_Ea8=">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <h5>EduCulture</h5>
+    <p>Preserving Heritage Through Technology</p>
+    
+  </div>
+</footer>
+
+<script>
+  function toggleMode() { document.body.classList.toggle("dark"); }
+
+  async function generateStory() {
+    const topic = document.getElementById("topicInput").value.trim();
+    const output = document.getElementById("storyOutput");
+    const spinner = document.getElementById("spinner");
+    const history = document.getElementById("history");
+
+    if (!topic) {
+      output.style.display = "block";
+      output.innerHTML = " Please enter a culture or art topic.";
+      return;
+    }
+
+    output.style.display = "block";
+    output.innerHTML = "";
+    spinner.style.display = "inline-block";
+
+    try {
+      const res = await fetch("/generate-story", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic })
+      });
+      const data = await res.json();
+      spinner.style.display = "none";
+
+      if (data.story) {
+        output.innerHTML = data.story;
+        const histItem = document.createElement("div");
+        histItem.classList.add("history-item");
+        histItem.innerHTML = `<strong>${topic}</strong>: ${data.story}`;
+        history.prepend(histItem);
+      } else {
+        output.innerHTML = " No story returned. Please try another topic.";
+      }
+    } catch (error) {
+      spinner.style.display = "none";
+      output.innerHTML = " Server error. Please try again.";
+      console.error(error);
+    }
+  }
+
+  const funFacts = [
+    "Warli art originated in Maharashtra over 2500 years ago.",
+    "Madhubani paintings were traditionally done using fingers.",
+    "Folk art was passed down orally before written records.",
+    "Natural colors came from flowers, stones, and leaves.",
+    "Indian folk art changes every few kilometers.",
+    "Pattachitra paintings narrate mythological stories.",
+    "Folk dances were often linked to farming seasons.",
+    "Traditional art was once a community effort."
+  ];
+
+  let factIndex = 0;
+
+  setInterval(() => {
+    factIndex = (factIndex + 1) % funFacts.length;
+    const factElement = document.getElementById("funFactText");
+    factElement.style.animation = "none";
+    factElement.offsetHeight; // trigger reflow
+    factElement.style.animation = "fadeIn 0.6s ease-in-out";
+    factElement.innerText = funFacts[factIndex];
+  }, 5000);
+
+ 
+function explainSimple() {
+  document.getElementById("simpleOutput").innerHTML =
+    "<p><b>Simple:</b> Folk art is a way people show their life, beliefs, and stories using drawings, colors, and patterns.</p>";
+}
+
+function showNotes() {
+  document.getElementById("notesOutput").innerHTML = `
+    <ul>
+      <li><b>Culture:</b> Shared traditions</li>
+      <li><b>Folk Art:</b> Community-based art</li>
+      <li><b>Purpose:</b> Storytelling</li>
+      <li><b>Medium:</b> Natural colors</li>
+      <li><b>Value:</b> Heritage preservation</li>
+    </ul>
+    <p><b>One-line:</b> Folk art keeps culture alive.</p>
+  `;
+}
+
+function askDoubt() {
+  const input = document.getElementById("doubtInput");
+  const chat = document.getElementById("doubtChat");
+
+  if (!input.value.trim()) return;
+
+  chat.innerHTML += `<p><b>You:</b> ${input.value}</p>`;
+  chat.innerHTML += `<p><b>EduCulture:</b> This topic is important for understanding cultural heritage.</p>`;
+  chat.scrollTop = chat.scrollHeight;
+  input.value = "";
+}
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
