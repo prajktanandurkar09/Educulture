@@ -12,7 +12,7 @@ print("API KEY FROM ENV =", os.getenv("GROQ_API_KEY"))
 app = Flask(__name__)
 
 # Initialize Groq client
-client = Groq(api_key="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")
+client = Groq(api_key="GROQ_API_KEY")
 
 
 @app.route("/")
@@ -39,3 +39,4 @@ def generate_story():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
 app.run(host='0.0.0.0', port=port)
+
